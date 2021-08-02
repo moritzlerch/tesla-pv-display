@@ -20,14 +20,20 @@ class Powerwall {
 
     public:
         Powerwall();
-        String powerwallGetRequest(String url);
         String getAuthCookie();
+        String powerwallGetRequest(String url, String authCookie);
+        double currBattPerc(String authCookie);
+        double currPowerBattery(String authCookie);
+        double currPowerHome(String authCookie);
+        double currPowerGrid(String authCookie);
+        double currPowerSolar(String authCookie);
 };
 
 Powerwall::Powerwall() {
     powerwall_ip = POWERWALL_IP_CONFIG;
     tesla_email = TESLA_EMAIL;
     tesla_password = TESLA_PASSWORD;
+    authCookie = "";
 }
 
 String Powerwall::getAuthCookie() {
@@ -87,14 +93,17 @@ String Powerwall::getAuthCookie() {
         return "ERROR (getAuthCookie())";
     }
 
-    if (authJSON["token"] == NULL) {
+    String result = authJSON["token"];
+
+    if (result == NULL) {
         getAuthCookie();
     }
 
-    return authJSON["token"];
+    authCookie = result;
+    return result;
 }
 
-String Powerwall::powerwallGetRequest(String url) {
+String Powerwall::powerwallGetRequest(String url, String authCookie = getAuthCookie()) {
     WiFiClientSecure httpsClient;
     httpsClient.setInsecure();
     httpsClient.setTimeout(10000);
@@ -124,5 +133,26 @@ String Powerwall::powerwallGetRequest(String url) {
 
     return httpsClient.readStringUntil('\n');
 }
+
+double Powerwall::currBattPerc(String authCookie) {
+
+}
+
+double Powerwall::currPowerBattery(String authCookie) {
+    
+}
+
+double Powerwall::currPowerHome(String authCookie) {
+    
+}
+
+double Powerwall::currPowerGrid(String authCookie) {
+    
+}
+
+double Powerwall::currPowerSolar(String authCookie) {
+    
+}
+
 
 #endif
