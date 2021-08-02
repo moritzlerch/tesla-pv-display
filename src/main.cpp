@@ -71,17 +71,10 @@ void setup() {
 
 void loop() {
   if (WiFi.status() == WL_CONNECTED) {
-    Serial.println(powerwall.getAuthCookie());
-    String result = powerwall.powerwallGetRequest("/api/status");
-
-    const size_t bufferSize = JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(8) + 370;
-    DynamicJsonDocument doc(bufferSize);
-    deserializeJson(doc, result);
-
-    String version = doc["version"];
+    double soc = powerwall.currBattPerc();
     lcd.clear();
     lcd.setCursor(0,0);
-    lcd.print(version);
+    lcd.print(soc);
   }
 
   delay(30000);

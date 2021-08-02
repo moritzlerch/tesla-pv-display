@@ -6,6 +6,8 @@
 #include <WiFiClientSecure.h>
 #include <ArduinoJson.h>
 
+#include <math_tools.h>
+
 // import config files
 #include <config.h>
 #include <secrets.h>
@@ -24,10 +26,7 @@ class Powerwall {
         String powerwallGetRequest(String url, String authCookie);
         String powerwallGetRequest(String url);
         double currBattPerc(String authCookie);
-        double currPowerBattery(String authCookie);
-        double currPowerHome(String authCookie);
-        double currPowerGrid(String authCookie);
-        double currPowerSolar(String authCookie);
+        double * currPower(String authCookie);
 };
 
 Powerwall::Powerwall() {
@@ -121,9 +120,12 @@ String Powerwall::powerwallGetRequest(String url, String authCookie) {
         return("CONN-FAIL");
     }
 
-    httpsClient.print(String("GET ") + url + " HTTP/1.1\r\n" +
-                      "Host: " + powerwall_ip +
-                      "\r\n" + "Connection: close\r\n\r\n");
+    Serial.println(authCookie);
+
+    httpsClient.print(String("GET ") + url + " HTTP/1.1" + "\r\n" +
+                      "Host: " + powerwall_ip + "\r\n" +
+                      "Cookie: " + "AuthCookie" + "=" + authCookie + "\r\n" +
+                      "Connection: close\r\n\r\n");
 
     while (httpsClient.connected()) {
         String response = httpsClient.readStringUntil('\n');
@@ -136,28 +138,53 @@ String Powerwall::powerwallGetRequest(String url, String authCookie) {
 }
 
 String Powerwall::powerwallGetRequest(String url){
-    this->powerwallGetRequest(url, this->getAuthCookie());
+    return(this->powerwallGetRequest(url, this->getAuthCookie()));
 }
 
-double Powerwall::currBattPerc(String authCookie) {
+double Powerwall::currBattPerc(String authCookie = "") {
+    String tempAuthCookie = this->getAuthCookie();
+    String socJson = this->powerwallGetRequest("/api/system_status/soe", tempAuthCookie);
 
+    Serial.println(socJson);
+
+    StaticJsonDocument<48> socJsonDoc;
+
+    DeserializationError error = deserializeJson(socJsonDoc, socJson);
+
+    if (error) {
+        Serial.print(F("deserializeJson() failed: "));
+        Serial.println(error.f_str());
+        return 0.0;
+    }
+
+    double output = socJsonDoc["percentage"];
+    output = round_down(output, 2);
+
+    return output;
 }
 
-double Powerwall::currPowerBattery(String authCookie) {
+/**
+ * This function returns the current power consumption of several endpoints as an array. 
+ * Included are Power from Battery, Home, Grid and Solar. Have in mind that some of the
+ * values might be negative, but keep in mind that you have solar :-)
+ * @param authCookie
+ * @return array of current power flows
+ */
+double * Powerwall::currPower(String authCookie) {
     
 }
 
-double Powerwall::currPowerHome(String authCookie) {
+// double Powerwall::currPowerHome(String authCookie) {
     
-}
+// }
 
-double Powerwall::currPowerGrid(String authCookie) {
+// double Powerwall::currPowerGrid(String authCookie) {
     
-}
+// }
 
-double Powerwall::currPowerSolar(String authCookie) {
+// double Powerwall::currPowerSolar(String authCookie) {
     
-}
+// }
 
 
 #endif
