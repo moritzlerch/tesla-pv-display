@@ -22,6 +22,7 @@ class Powerwall {
         Powerwall();
         String getAuthCookie();
         String powerwallGetRequest(String url, String authCookie);
+        String powerwallGetRequest(String url);
         double currBattPerc(String authCookie);
         double currPowerBattery(String authCookie);
         double currPowerHome(String authCookie);
@@ -103,7 +104,7 @@ String Powerwall::getAuthCookie() {
     return result;
 }
 
-String Powerwall::powerwallGetRequest(String url, String authCookie = getAuthCookie()) {
+String Powerwall::powerwallGetRequest(String url, String authCookie) {
     WiFiClientSecure httpsClient;
     httpsClient.setInsecure();
     httpsClient.setTimeout(10000);
@@ -132,6 +133,10 @@ String Powerwall::powerwallGetRequest(String url, String authCookie = getAuthCoo
     }
 
     return httpsClient.readStringUntil('\n');
+}
+
+String Powerwall::powerwallGetRequest(String url){
+    this->powerwallGetRequest(url, this->getAuthCookie());
 }
 
 double Powerwall::currBattPerc(String authCookie) {
