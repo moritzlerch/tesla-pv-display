@@ -87,6 +87,10 @@ String Powerwall::getAuthCookie() {
         return "ERROR (getAuthCookie())";
     }
 
+    if (authJSON["token"] == NULL) {
+        getAuthCookie();
+    }
+
     return authJSON["token"];
 }
 
