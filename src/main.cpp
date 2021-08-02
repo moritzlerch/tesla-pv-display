@@ -20,10 +20,6 @@
 const char *wifi_ssid = WIFI_SSID_SECRETS;
 const char *wifi_password = WIFI_PASSWORD_SECRETS;
 
-#include <config.h>
-const String api_url = JSON_API_URL_CONFIG;
-const String endpoint_1 = REQUEST_ENDPOINT_1_CONFIG;
-
 // Objects
 Saver saverEEPROM = Saver();
 Powerwall powerwall = Powerwall();
