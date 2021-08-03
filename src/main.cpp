@@ -24,7 +24,7 @@ const char *wifi_password = WIFI_PASSWORD_SECRETS;
 Saver saverEEPROM = Saver();
 Powerwall powerwall = Powerwall();
 
-LiquidCrystal_I2C lcd(0x27,16,2);
+LiquidCrystal_I2C lcd(0x27,20,4);
 
 void setup() {
   Serial.begin(9600);
@@ -32,10 +32,10 @@ void setup() {
   lcd.init();
   lcd.backlight();
 
-  lcd.setCursor(0,0);
-  lcd.print("   PV-Display");
   lcd.setCursor(0,1);
-  lcd.print("Watch for Power!");
+  lcd.print("     PV-Display");
+  lcd.setCursor(0,2);
+  lcd.print("Monitor Solar Power!");
 
   delay(4000);
 
@@ -45,10 +45,10 @@ void setup() {
   WiFi.begin(wifi_ssid, wifi_password);
   
   lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("   Connecting");
   lcd.setCursor(0,1);
-  lcd.print("   to WiFi...");
+  lcd.print("     Connecting");
+  lcd.setCursor(0,2);
+  lcd.print("     to WiFi...");
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
@@ -56,9 +56,13 @@ void setup() {
   }
 
   lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("   Connected!");
+  lcd.setCursor(0,1);
+  lcd.print("     Connected!");
   delay(1000);
+
+  Serial.print(hostname);
+  Serial.print("@");
+  Serial.println(WiFi.localIP());
 
   lcd.clear();
   lcd.setCursor(0,0);
@@ -74,8 +78,8 @@ void loop() {
     double soc = powerwall.currBattPerc();
     lcd.clear();
     lcd.setCursor(0,0);
-    lcd.print(soc);
+    lcd.print("SOC: " + String(soc) + "%");
   }
 
-  delay(30000);
+  delay(1000);
 }
