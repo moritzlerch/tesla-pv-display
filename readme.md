@@ -21,3 +21,6 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 Project code is licensed under GPL-3.0 License, see `LICENSE` for more information.
 
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
+
+---
+**Disclaimer**: *In accordance with the MIT license, I assume no liability for any damage to you or any other person or equipment. The software of this project also does not include any warranty.*
