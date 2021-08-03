@@ -23,7 +23,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
+     inkscape:zoom="0.98994949"
      inkscape:cx="250.17878"
      inkscape:cy="145.33288"
      inkscape:document-units="mm"
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,41 +59,11 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-29.104166,-116.41666)">
-    <rect
-       style="fill:#4ca36a;fill-opacity:1;stroke-width:0.804366;stroke-linecap:round;stop-color:#000000"
+    <path
        id="rect17729"
-       width="150.8125"
-       height="87.312508"
-       x="29.104166"
-       y="116.41666" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.661458;stroke-linecap:round;stop-color:#000000"
-       id="rect17731"
-       width="5.2916665"
-       height="5.2916665"
-       x="31.75"
-       y="119.0625" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.661458;stroke-linecap:round;stop-color:#000000"
-       id="rect17733"
-       width="5.2916665"
-       height="5.2916665"
-       x="171.97917"
-       y="119.0625" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.661458;stroke-linecap:round;stop-color:#000000"
-       id="rect17735"
-       width="5.2916665"
-       height="5.2916665"
-       x="171.97916"
-       y="195.79166" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.661458;stroke-linecap:round;stop-color:#000000"
-       id="rect17737"
-       width="5.2916665"
-       height="5.2916665"
-       x="31.750006"
-       y="195.79166" />
+       style="fill:#4ca36a;fill-opacity:1;stroke-width:3.04012;stroke-linecap:round;stop-color:#000000"
+       d="M 0 0 L 0 330 L 570 330 L 570 0 L 0 0 z M 10 10 L 30 10 L 30 30 L 10 30 L 10 10 z M 540 10 L 560 10 L 560 30 L 540 30 L 540 10 z M 10 300 L 30 300 L 30 320 L 10 320 L 10 300 z M 540 300 L 560 300 L 560 320 L 540 320 L 540 300 z "
+       transform="matrix(0.26458333,0,0,0.26458333,29.104166,116.41666)" />
     <rect
        style="fill:#000000;fill-opacity:1;stroke-width:1.01728;stroke-linecap:round;stop-color:#000000"
        id="rect17739"
