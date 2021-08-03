@@ -2,7 +2,7 @@
 
 
 <p align="center">
-    <img src="/assets/pv_display.svg" width=50%><br>
+    <img src="/assets/pv_display.svg" width=50%><br><br>
     <a href="https://github.com/MoritzLerch/pv_display/releases"><img src="https://img.shields.io/github/v/release/MoritzLerch/pv_display.svg?color=blue&style=flat-square"></a>
     <a href="https://github.com/MoritzLerch/pv_display/releases"><img src="https://img.shields.io/github/workflow/status/MoritzLerch/pv_display/PlatformIO%20CI?color=blue&style=flat-square"></a>
     <a href="https://raw.githubusercontent.com/MoritzLerch/pv_display/master/LICENSE"><img src="https://img.shields.io/github/license/MoritzLerch/pv_display?color=blue&style=flat-square"></a>
