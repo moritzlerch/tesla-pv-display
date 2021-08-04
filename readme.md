@@ -19,9 +19,15 @@ You can find a **quick start guide and documentation** [here](https://github.com
 
 ## 🤝 License and credits
 
+### License
+
 Project code is licensed under GPL-3.0 License, see `LICENSE` for more information.
 
+### Logo and Icon License
+The PV-Display logos and icons are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos or icons please contact the author in order to get a permission.
+
+### Credits
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
 
 ---
-**Disclaimer**: *In accordance with the MIT license, I assume no liability for any damage to you or any other person or equipment. The software of this project also does not include any warranty.*
+**Disclaimer**: *In accordance with the GNU General Public License v3.0 license, I assume no liability for any damage to you or any other person or equipment. There is no warranty on this open source project.*
