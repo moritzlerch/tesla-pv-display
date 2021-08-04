@@ -24,6 +24,11 @@ const char *wifi_password = WIFI_PASSWORD_SECRETS;
 Saver saverEEPROM = Saver();
 Powerwall powerwall = Powerwall();
 
+// Auth-Stuff
+int reUseAuthToken = 10;
+int reUsedAuthToken = 0;
+String authCookie = "";
+
 LiquidCrystal_I2C lcd(0x27,20,4);
 
 void setup() {
@@ -75,10 +80,41 @@ void setup() {
 
 void loop() {
   if (WiFi.status() == WL_CONNECTED) {
-    double soc = powerwall.currBattPerc();
+
+    Serial.println(""); // space between console output
+
+    if (reUsedAuthToken < reUseAuthToken && reUsedAuthToken != 0) {
+      reUsedAuthToken++;
+    } else {
+      Serial.println("Getting new authToken!");
+      authCookie = powerwall.getAuthCookie();
+
+      if (reUsedAuthToken == 0) {
+        reUsedAuthToken++;
+      } else {
+        reUsedAuthToken = 1;
+      }
+    }
+
+    double soc = powerwall.currBattPerc(authCookie);
+    double * powers = powerwall.currPowers(authCookie);
+
+    String pwr_grid = generatePowerOutputString(powers[0]);
+    String pwr_batt = generatePowerOutputString(powers[1]);
+    String pwr_home = generatePowerOutputString(powers[2]);
+    String pwr_solar = generatePowerOutputString(powers[3]);
+    
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("SOC: " + String(soc) + "%");
+    lcd.setCursor(0,2);
+    lcd.print("G:" + pwr_grid);
+    lcd.setCursor(11,2);
+    lcd.print("B:" + pwr_batt);
+    lcd.setCursor(0,3);
+    lcd.print("H:" + pwr_home);
+    lcd.setCursor(11,3);
+    lcd.print("S:" + pwr_solar);
   }
 
   delay(1000);
