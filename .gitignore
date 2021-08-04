@@ -6,3 +6,4 @@
 
 include/config.h
 include/secrets.h
+idea.cpp

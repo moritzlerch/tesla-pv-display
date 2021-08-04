@@ -27,10 +27,8 @@ String padInt(int n, int digits, String fill) {
         zeroString += fillString;
     }
   
-    // append everything
-    output = zeroString + intString;
-  
-    return output;
+    // append everything and return
+    return zeroString + intString;
 }
 
 
