@@ -31,12 +31,12 @@ int trunc_double(double value) {
  * (4) create string that displays the part beginning at the dot, e.g. ".00"
  * 
  * (5.1.) [decimal_places == 0] just return the prePoint string (literally just end
- *        the substring after the length of the string --> last index+1 --> substring does
- *        not take this char anymore, but doesn't matter because the last index+1 has no value, does practically nothing)
+ *        the substring after the length of the string --> substring parameter "to" cuts off
+ *        in front of the given index (length = last index + 1); this does literally nothing)
  * 
  * (5.2.) [else] return value in front of the dot followed by the dot and
  *        decimal places (add 1 to the to-param of substring() so this index
- *        will also be included and the string is not cut of before)
+ *        will also be included --> the dot is the first index)
  * 
  * @param value double to be truncated
  * @param decimal_places decimal places to cut to
