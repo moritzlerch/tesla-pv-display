@@ -26,6 +26,7 @@ class Powerwall {
         Powerwall();
         String getAuthCookie();
         String powerwallGetRequest(String url, String authCookie);
+        String powerwallGetRequest(String url);
         double currBattPerc(String authCookie);
         double* currPowers(String authCookie);
 };
@@ -121,7 +122,7 @@ String Powerwall::getAuthCookie() {
  * @param authCookie optional, but recommended
  * @returns content of request
  */
-String Powerwall::powerwallGetRequest(String url, String authCookie = "") {
+String Powerwall::powerwallGetRequest(String url, String authCookie) {
     WiFiClientSecure httpsClient;
     httpsClient.setInsecure();
     httpsClient.setTimeout(10000);
@@ -162,6 +163,13 @@ String Powerwall::powerwallGetRequest(String url, String authCookie = "") {
     }
 
     return httpsClient.readStringUntil('\n');
+}
+
+/**
+ * this is getting called if there was no provided authCookie in powerwallGetRequest(String url, String authCookie)
+ */
+String Powerwall::powerwallGetRequest(String url){
+    return(this->powerwallGetRequest(url, this->getAuthCookie()));
 }
 
 /**
