@@ -38,7 +38,7 @@ Powerwall::Powerwall() {
     authCookie = "";
     lastSOCPerc = 0.0;
 
-    for (unsigned int i = 0; i < (sizeof(lastPowers) / sizeof(lastPowers[0])); i++) {
+    for (int i = 0; i < getArrayLength(lastPowers); i++) {
         lastPowers[i] = 0.0;
     }
 }

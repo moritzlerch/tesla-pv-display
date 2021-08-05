@@ -52,4 +52,13 @@ String removeDecimalPlaces(double value, int decimal_places) {
     return decimal_places == 0 ? prePoint.substring(0, prePoint.length()) : prePoint + afterPoint.substring(0, decimal_places+1); // (5)
 }
 
+/** 
+ * get length of double array
+ * @param inputArray
+ * @returns length
+ */
+int getArrayLength(double inputArray[]) {
+    return (sizeof(inputArray) / sizeof(inputArray[0]));
+}
+
 #endif
