@@ -32,7 +32,7 @@ int trunc_double(double value) {
  * 
  * (5.1.) [decimal_places == 0] just return the prePoint string (literally just end
  *        the substring after the length of the string --> last index+1 --> substring does
- *        not take this char anymore, but doesn't matter because the last index+1 has no value)
+ *        not take this char anymore, but doesn't matter because the last index+1 has no value, does practically nothing)
  * 
  * (5.2.) [else] return value in front of the dot followed by the dot and
  *        decimal places (add 1 to the to-param of substring() so this index

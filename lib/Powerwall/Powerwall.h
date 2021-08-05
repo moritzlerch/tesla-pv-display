@@ -27,7 +27,7 @@ class Powerwall {
         String getAuthCookie();
         String powerwallGetRequest(String url, String authCookie);
         double currBattPerc(String authCookie);
-        double * currPowers(String authCookie);
+        double* currPowers(String authCookie);
 };
 
 Powerwall::Powerwall() {
@@ -207,7 +207,7 @@ double Powerwall::currBattPerc(String authCookie = "") {
  * @param authCookie - this is optional
  * @return array of current power flows
  */
-double * Powerwall::currPowers(String authCookie = "") {
+double* Powerwall::currPowers(String authCookie = "") {
     static double powers[4];
 
     String tempAuthCookie;
@@ -218,7 +218,7 @@ double * Powerwall::currPowers(String authCookie = "") {
         tempAuthCookie = this->getAuthCookie();
     }
 
-    const char *metersJson = this->powerwallGetRequest("/api/meters/aggregates", tempAuthCookie).c_str();
+    const char* metersJson = this->powerwallGetRequest("/api/meters/aggregates", tempAuthCookie).c_str();
 
     // Serial.println(metersJson);
     
