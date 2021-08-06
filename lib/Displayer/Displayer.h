@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include <math_tools.h>
+#include <enums.h>
 
 class Displayer {
     private:
@@ -35,7 +36,7 @@ class Displayer {
         void wifiConnectionFailedScreen();
         void wifiConnectionSuccessScreen();
         void wifiClientDetailsScreen(String hostname, String localIP);
-        void displayRequestState(int state);
+        void displayRequestState(RequestState state);
         void informationScreen(double soc, double* powers);
 };
 
@@ -87,13 +88,13 @@ void Displayer::registerCustomChars() {
     byte charDotTop[]    = {B00011, B00011, B00000, B00000, B00000, B00000, B00000, B00000};
     byte charDotMiddle[] = {B00000, B00000, B00000, B00011, B00011, B00000, B00000, B00000};
     byte charDotBottom[] = {B00000, B00000, B00000, B00000, B00000, B00000, B00011, B00011};
-    byte charWifiIssue[] = {B00000, B00000, B00000, B00111, B01000, B10011, B10100, B10101};
+    byte charConnectionIssue[] = {B00000, B00000, B00000, B00111, B01000, B10011, B10100, B10101};
 
-    this->createChar(0, charClear);
-    this->createChar(1, charDotTop);
-    this->createChar(2, charDotMiddle);
-    this->createChar(3, charDotBottom);
-    this->createChar(4, charWifiIssue);
+    this->createChar(CC_CLEAR, charClear);
+    this->createChar(CC_DOT_TOP, charDotTop);
+    this->createChar(CC_DOT_MIDDLE, charDotMiddle);
+    this->createChar(CC_DOT_BOTTOM, charDotBottom);
+    this->createChar(CC_CONN_ISSUE, charConnectionIssue);
 }
 
 void Displayer::welcomeScreen() {
@@ -134,24 +135,34 @@ void Displayer::wifiClientDetailsScreen(String hostname, String localIP) {
 
 /**
  * This function prints the current API request states in the upper right corner
- * `state == 0` = clear
- * `state == 1` = dot top
- * `state == 2` = dot middle
- * `state == 3` = dot bottom
- * `state == 4` = connection issue
- * 
- * @param state see description
+ * @param state enums.h
  */
-void Displayer::displayRequestState(int state) {
+void Displayer::displayRequestState(RequestState state) {
     // write an "F" before actual character if state means a WiFi-Connection-Issue
-    if (state == 4) { 
+    if (state == REQUESTSTATE_CONN_ISSUE) { 
         this->setCursor(18, 0);
         this->print("F");
     }
 
     // now write the actual character
     this->setCursor(19, 0);
-    this->write(state);
+    switch (state) {
+        case REQUESTSTATE_GET_AUTHTOKEN:
+            this->write(CC_DOT_TOP);
+            break;
+        case REQUESTSTATE_GET_SOC:
+            this->write(CC_DOT_MIDDLE);
+            break;
+        case REQUESTSTATE_GET_POWERFLOWS:
+            this->write(CC_DOT_BOTTOM);
+            break;
+        case REQUESTSTATE_CONN_ISSUE:
+            this->write(CC_CONN_ISSUE);
+            break;
+        case REQUESTSTATE_NONE:
+        default:
+            this->write(CC_CLEAR);
+    }
 }
 
 /**

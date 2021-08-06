@@ -15,6 +15,8 @@
 const char* wifi_ssid = WIFI_SSID_SECRETS;
 const char* wifi_password = WIFI_PASSWORD_SECRETS;
 
+#include <enums.h>
+
 // Objects
 Displayer display = Displayer(0x27, 20, 4);
 Saver saverEEPROM = Saver();
@@ -81,7 +83,7 @@ void loop() {
       reUsedAuthToken++;
     } else {
       Serial.println("Getting new authToken!");
-      if (showRequestState) { display.displayRequestState(1); }
+      if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_AUTHTOKEN); }
 
       authCookie = powerwall.getAuthCookie();
 
@@ -92,16 +94,16 @@ void loop() {
       }
     }
 
-    if (showRequestState) { display.displayRequestState(2); }
+    if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_SOC); }
     double soc = powerwall.currBattPerc(authCookie); // Request SOC
     
-    if (showRequestState) { display.displayRequestState(3); }
+    if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_POWERFLOWS); }
     double* powers = powerwall.currPowers(authCookie); // Request power flows
 
     display.informationScreen(soc, powers);
     
   } else {
-    display.displayRequestState(4);
+    display.displayRequestState(REQUESTSTATE_CONN_ISSUE);
     delay(2000);
   }
 
