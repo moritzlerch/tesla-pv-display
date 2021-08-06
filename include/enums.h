@@ -9,7 +9,7 @@ enum CustomChar : uint8_t {
     CC_CONN_ISSUE = 4,
 };
 
-enum RequestState{
+enum RequestState {
     REQUESTSTATE_NONE,
     REQUESTSTATE_GET_AUTHTOKEN,
     REQUESTSTATE_GET_SOC,

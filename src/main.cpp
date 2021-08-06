@@ -9,13 +9,12 @@
 #include <Powerwall.h>
 #include <tools.h>
 #include <math_tools.h>
+#include <enums.h>
 
 // include config
 #include <secrets.h>
 const char* wifi_ssid = WIFI_SSID_SECRETS;
 const char* wifi_password = WIFI_PASSWORD_SECRETS;
-
-#include <enums.h>
 
 // Objects
 Displayer display = Displayer(0x27, 20, 4);
