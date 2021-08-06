@@ -4,11 +4,12 @@
 #include <ESP8266WiFi.h>
 
 // custom imports
+#include <Displayer.h>
 #include <Saver.h>
 #include <Powerwall.h>
 #include <tools.h>
 #include <math_tools.h>
-#include <display_helper.h>
+#include <enums.h>
 
 // include config
 #include <secrets.h>
@@ -16,6 +17,7 @@ const char* wifi_ssid = WIFI_SSID_SECRETS;
 const char* wifi_password = WIFI_PASSWORD_SECRETS;
 
 // Objects
+Displayer display = Displayer(0x27, 20, 4);
 Saver saverEEPROM = Saver();
 Powerwall powerwall = Powerwall();
 
@@ -25,35 +27,27 @@ int reUsedAuthToken = 0;
 String authCookie = "";
 
 // custom chars for displaying API requests
-bool showRequestingDot = true;
+bool showRequestState = true;
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
 void setup() {
   Serial.begin(9600);
 
-  lcd.init();
-  lcd.backlight();
-
-  lcd.setCursor(0,1);
-  lcd.print("     PV-Display");
-  lcd.setCursor(0,2);
-  lcd.print("   Monitor Power!");
-
+  display.start();
+  display.welcomeScreen();
   delay(4000);
+
+  // lcd.init();
+  // lcd.backlight();
 
   WiFi.softAPdisconnect(true);
 
   String hostname = generateHostname(saverEEPROM);
-
   WiFi.hostname(hostname);
   WiFi.begin(wifi_ssid, wifi_password);
   
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("     Connecting");
-  lcd.setCursor(0,2);
-  lcd.print("     to WiFi...");
+  display.connectingWifiScreen();
 
   int counterReconnectWifi = 0;
 
@@ -63,39 +57,17 @@ void setup() {
     counterReconnectWifi++;
 
     if (counterReconnectWifi >= 30) {
-        lcd.clear();
-        lcd.setCursor(0,1);
-        lcd.print("     Connection");
-        lcd.setCursor(0,2);
-        lcd.print("       failed");
-
-        delay(3000);
-        lcd.clear();
-        lcd.setCursor(0,0);
-        lcd.print("     Check your");
-        lcd.setCursor(0,1);
-        lcd.print("    credentials!");
-        lcd.setCursor(0,3);
-        lcd.print("Please reboot device");
-
+        display.wifiConnectionFailedScreen();
         while (true) { delay(1000); } // endless loop ;-)
     }
   }
 
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("     Connected!");
+  display.wifiConnectionSuccessScreen();
   delay(1000);
 
-  Serial.print(hostname);
-  Serial.print("@");
-  Serial.println(WiFi.localIP());
-
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(hostname);
-  lcd.setCursor(0,1);
-  lcd.print(WiFi.localIP());
+  String localIP = ip2Str(WiFi.localIP());
+  Serial.println(hostname + "@" + localIP);
+  display.wifiClientDetailsScreen(hostname, localIP);
   delay(1000);
 
 }
@@ -105,11 +77,12 @@ void loop() {
 
     Serial.println(""); // space between console output
 
+    // check if new authToken should get requested
     if (reUsedAuthToken < reUseAuthToken && reUsedAuthToken != 0) {
       reUsedAuthToken++;
     } else {
       Serial.println("Getting new authToken!");
-      if (showRequestingDot) { displayRequestingState(lcd, 1); }
+      if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_AUTHTOKEN); }
 
       authCookie = powerwall.getAuthCookie();
 
@@ -120,31 +93,16 @@ void loop() {
       }
     }
 
-    if (showRequestingDot) { displayRequestingState(lcd, 2); }
+    if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_SOC); }
     double soc = powerwall.currBattPerc(authCookie); // Request SOC
     
-    if (showRequestingDot) { displayRequestingState(lcd, 3); }
+    if (showRequestState) { display.displayRequestState(REQUESTSTATE_GET_POWERFLOWS); }
     double* powers = powerwall.currPowers(authCookie); // Request power flows
 
-    String pwr_grid = generatePowerOutputString(powers[0]);
-    String pwr_batt = generatePowerOutputString(powers[1]);
-    String pwr_home = generatePowerOutputString(powers[2]);
-    String pwr_solar = generatePowerOutputString(powers[3]);
-    
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print("SOC: " + String(soc) + "%");
-    lcd.setCursor(0,2);
-    lcd.print("G:" + pwr_grid);
-    lcd.setCursor(11,2);
-    lcd.print("B:" + pwr_batt);
-    lcd.setCursor(0,3);
-    lcd.print("H:" + pwr_home);
-    lcd.setCursor(11,3);
-    lcd.print("S:" + pwr_solar);
+    display.informationScreen(soc, powers);
     
   } else {
-    displayRequestingState(lcd, 4);
+    display.displayRequestState(REQUESTSTATE_CONN_ISSUE);
     delay(2000);
   }
 
