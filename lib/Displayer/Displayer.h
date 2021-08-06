@@ -46,6 +46,7 @@ Displayer::Displayer(uint8_t addr, uint8_t cols, uint8_t rows) : _lcd(addr, cols
 void Displayer::start() {
     this->_lcd.init();
     this->backlight();
+    this->registerCustomChars();
 }
 
 void Displayer::backlight() {
