@@ -1,6 +1,6 @@
 ---
 BasedOnStyle: Google
-AlignConsecutiveAssignments: 'true'
+AlignConsecutiveAssignments: 'Consecutive'
 AllowAllConstructorInitializersOnNextLine: 'true'
 AllowShortBlocksOnASingleLine: 'true'
 AllowShortFunctionsOnASingleLine: Empty
