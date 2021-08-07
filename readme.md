@@ -1,4 +1,4 @@
-<h2 align="center">"PV-Display" Project - Monitor power flows on your Tesla Powerwall</h2>
+<h2 align="center">"PV-Display" Project - Monitor power flows of your Tesla Powerwall</h2>
 
 
 <p align="center">
@@ -11,11 +11,14 @@
 </p>
 
 ## 💡 Short description
+
 This project uses an ESP8266 with attached LCD-Display to connect to the local API of the Tesla Powerwall (V2). It is displaying all the current power flows (grid, home, solar, battery) and the SOC (state of charge), so it's perfect for creating an information screen.
 (If you wonder about the name: PV --> Photovoltaic; Display --> Screen)
 
 ## 👾 Installation and Usage
-You can find a **quick start guide and documentation** [here](https://github.com/MoritzLerch/pv_display/wiki). Have fun in the Wiki!
+
+- You can find a **quick start guide and documentation** [here](https://github.com/MoritzLerch/pv_display/wiki). Have fun in the Wiki!
+- If you want to know, how the display show the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
 
 ## 🤝 License and credits
 
