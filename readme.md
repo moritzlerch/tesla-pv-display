@@ -13,7 +13,7 @@
 ## 💡 Short description
 
 This project uses an ESP8266 with attached LCD-Display to connect to the local API of the Tesla Powerwall (V2). It is displaying all the current power flows (grid, home, solar, battery) and the SOC (state of charge), so it's perfect for creating an information screen.
-(If you wonder about the name: PV --> Photovoltaic; Display --> Display )
+(If you wonder about the name: PV --> Photovoltaic; Display --> Display 😉)
 
 ## 👾 Installation and Usage
 
