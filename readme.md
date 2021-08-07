@@ -24,7 +24,7 @@ You can find a **quick start guide and documentation** [here](https://github.com
 Project code is licensed under MIT-License, see `LICENSE` for more information.
 
 ### Logo and Icon License
-The PV-Display logos and icons are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos or icons please contact the author in order to get a permission.
+The PV-Display logos, graphics and icons (everything in `/assets`) are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos, graphics or icons please contact the author in order to get a permission.
 
 ### Credits
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
