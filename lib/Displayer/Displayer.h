@@ -8,39 +8,40 @@
 #include <enums.h>
 
 class Displayer {
-    private:
-        LiquidCrystal_I2C _lcd; 
-        uint8_t _lcdCols;
-        void registerCustomChars();
-        String alignLeft(String input, int width);
-        String alignLeft(String input);
-        String alignRight(String input, int width);
-        String alignRight(String input);
-        String alignCenter(String input, int width);
-        String alignCenter(String input);
-        String generatePowerOutputString(double powerRaw);
+   private:
+    LiquidCrystal_I2C _lcd;
+    uint8_t _lcdCols;
+    void registerCustomChars();
+    String alignLeft(String input, int width);
+    String alignLeft(String input);
+    String alignRight(String input, int width);
+    String alignRight(String input);
+    String alignCenter(String input, int width);
+    String alignCenter(String input);
+    String generatePowerOutputString(double powerRaw);
 
-    public:
-        Displayer(uint8_t addr, uint8_t cols, uint8_t rows);
-        void start();
-        void backlight();
-        void noBacklight();
-        void clear();
-        void print(String input, int col, int row);
-        void print(String input);
-        void write(int input);
-        void setCursor(int col, int row);
-        void createChar(uint8_t location, uint8_t charmap[]);
-        void welcomeScreen();
-        void connectingWifiScreen();
-        void wifiConnectionFailedScreen();
-        void wifiConnectionSuccessScreen();
-        void wifiClientDetailsScreen(String hostname, String localIP);
-        void displayRequestState(RequestState state);
-        void informationScreen(double soc, double* powers);
+   public:
+    Displayer(uint8_t addr, uint8_t cols, uint8_t rows);
+    void start();
+    void backlight();
+    void noBacklight();
+    void clear();
+    void print(String input, int col, int row);
+    void print(String input);
+    void write(int input);
+    void setCursor(int col, int row);
+    void createChar(uint8_t location, uint8_t charmap[]);
+    void welcomeScreen();
+    void connectingWifiScreen();
+    void wifiConnectionFailedScreen();
+    void wifiConnectionSuccessScreen();
+    void wifiClientDetailsScreen(String hostname, String localIP);
+    void displayRequestState(RequestState state);
+    void informationScreen(double soc, double* powers);
 };
 
-Displayer::Displayer(uint8_t addr, uint8_t cols, uint8_t rows) : _lcd(addr, cols, rows) {
+Displayer::Displayer(uint8_t addr, uint8_t cols, uint8_t rows)
+  : _lcd(addr, cols, rows) {
     this->_lcdCols = cols;
 }
 
@@ -84,10 +85,10 @@ void Displayer::createChar(uint8_t location, uint8_t charmap[]) {
 }
 
 void Displayer::registerCustomChars() {
-    byte charClear[]     = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00000};
-    byte charDotTop[]    = {B00011, B00011, B00000, B00000, B00000, B00000, B00000, B00000};
-    byte charDotMiddle[] = {B00000, B00000, B00000, B00011, B00011, B00000, B00000, B00000};
-    byte charDotBottom[] = {B00000, B00000, B00000, B00000, B00000, B00000, B00011, B00011};
+    byte charClear[]           = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00000};
+    byte charDotTop[]          = {B00011, B00011, B00000, B00000, B00000, B00000, B00000, B00000};
+    byte charDotMiddle[]       = {B00000, B00000, B00000, B00011, B00011, B00000, B00000, B00000};
+    byte charDotBottom[]       = {B00000, B00000, B00000, B00000, B00000, B00000, B00011, B00011};
     byte charConnectionIssue[] = {B00000, B00000, B00000, B00111, B01000, B10011, B10100, B10101};
 
     this->createChar(CC_CLEAR, charClear);
@@ -139,7 +140,7 @@ void Displayer::wifiClientDetailsScreen(String hostname, String localIP) {
  */
 void Displayer::displayRequestState(RequestState state) {
     // write an "F" before actual character if state means a WiFi-Connection-Issue
-    if (state == REQUESTSTATE_CONN_ISSUE) { 
+    if (state == REQUESTSTATE_CONN_ISSUE) {
         this->setCursor(18, 0);
         this->print("F");
     }
@@ -172,10 +173,10 @@ void Displayer::displayRequestState(RequestState state) {
  * @param powers pointer to array with power values as doubles
  */
 void Displayer::informationScreen(double soc, double* powers) {
-    String str_soc = String(removeDecimalPlaces(soc, 2));
-    String pwr_grid = this->generatePowerOutputString(powers[0]);
-    String pwr_batt = this->generatePowerOutputString(powers[1]);
-    String pwr_home = this->generatePowerOutputString(powers[2]);
+    String str_soc   = String(removeDecimalPlaces(soc, 2));
+    String pwr_grid  = this->generatePowerOutputString(powers[0]);
+    String pwr_batt  = this->generatePowerOutputString(powers[1]);
+    String pwr_home  = this->generatePowerOutputString(powers[2]);
     String pwr_solar = this->generatePowerOutputString(powers[3]);
 
     this->clear();
@@ -186,24 +187,23 @@ void Displayer::informationScreen(double soc, double* powers) {
     this->print("S:" + this->alignRight(pwr_solar, 7), 11, 3);
 }
 
-
 /** --------------- UTILS --------------- */
 
 String Displayer::alignLeft(String input, int width) {
-    return input.substring(0, width); // if string is too long, just cut everything after the param width
+    return input.substring(0, width);  // if string is too long, just cut everything after the param width
 }
 
 String Displayer::alignLeft(String input) {
-    return(this->alignLeft(input, this->_lcdCols));
+    return (this->alignLeft(input, this->_lcdCols));
 }
 
 String Displayer::alignRight(String input, int width) {
     int inputLength = input.length();
 
     if (inputLength >= width) {
-        return input.substring(0, width); // if string is too long, just cut everything after the param width
+        return input.substring(0, width);  // if string is too long, just cut everything after the param width
     } else {
-        String padding; 
+        String padding;
         for (int i = ((width - inputLength)); i > 0; i--) {
             padding += " ";
         }
@@ -213,16 +213,16 @@ String Displayer::alignRight(String input, int width) {
 }
 
 String Displayer::alignRight(String input) {
-    return(this->alignRight(input, this->_lcdCols));
+    return (this->alignRight(input, this->_lcdCols));
 }
 
 String Displayer::alignCenter(String input, int width) {
     int inputLength = input.length();
 
     if (inputLength >= width) {
-        return input.substring(0, width); // if string is too long, just cut everything after the param width
+        return input.substring(0, width);  // if string is too long, just cut everything after the param width
     } else {
-        String padding; 
+        String padding;
         for (int i = ((width - inputLength) / 2); i > 0; i--) {
             padding += " ";
         }
@@ -232,7 +232,7 @@ String Displayer::alignCenter(String input, int width) {
 }
 
 String Displayer::alignCenter(String input) {
-    return(this->alignCenter(input, this->_lcdCols));
+    return (this->alignCenter(input, this->_lcdCols));
 }
 
 /**

@@ -12,31 +12,30 @@
 #include <config.h>
 #include <secrets.h>
 
-
 class Powerwall {
-    private:
-        const char* powerwall_ip;
-        String tesla_email;
-        String tesla_password;
-        String authCookie;
-        double lastSOCPerc;
-        double lastPowers[4];
+   private:
+    const char* powerwall_ip;
+    String tesla_email;
+    String tesla_password;
+    String authCookie;
+    double lastSOCPerc;
+    double lastPowers[4];
 
-    public:
-        Powerwall();
-        String getAuthCookie();
-        String powerwallGetRequest(String url, String authCookie);
-        String powerwallGetRequest(String url);
-        double currBattPerc(String authCookie);
-        double* currPowers(String authCookie);
+   public:
+    Powerwall();
+    String getAuthCookie();
+    String powerwallGetRequest(String url, String authCookie);
+    String powerwallGetRequest(String url);
+    double currBattPerc(String authCookie);
+    double* currPowers(String authCookie);
 };
 
 Powerwall::Powerwall() {
-    powerwall_ip = POWERWALL_IP_CONFIG;
-    tesla_email = TESLA_EMAIL;
+    powerwall_ip   = POWERWALL_IP_CONFIG;
+    tesla_email    = TESLA_EMAIL;
     tesla_password = TESLA_PASSWORD;
-    authCookie = "";
-    lastSOCPerc = 0.0;
+    authCookie     = "";
+    lastSOCPerc    = 0.0;
 
     for (int i = 0; i < getArrayLength(lastPowers); i++) {
         lastPowers[i] = 0.0;
@@ -64,14 +63,14 @@ String Powerwall::getAuthCookie() {
     }
 
     if (retry >= 15) {
-        return("CONN-FAIL");
+        return ("CONN-FAIL");
     }
 
     String dataString;
     StaticJsonDocument<192> authJsonDoc;
 
     authJsonDoc["username"] = "customer";
-    authJsonDoc["email"] = tesla_email;
+    authJsonDoc["email"]    = tesla_email;
     authJsonDoc["password"] = tesla_password;
 
     serializeJson(authJsonDoc, dataString);
@@ -146,7 +145,7 @@ String Powerwall::powerwallGetRequest(String url, String authCookie) {
     }
 
     if (retry >= 15) {
-        return("CONN-FAIL");
+        return ("CONN-FAIL");
     }
 
     // HTTP/1.0 is used because of Chunked transfer encoding
@@ -168,8 +167,8 @@ String Powerwall::powerwallGetRequest(String url, String authCookie) {
 /**
  * this is getting called if there was no provided authCookie in powerwallGetRequest(String url, String authCookie)
  */
-String Powerwall::powerwallGetRequest(String url){
-    return(this->powerwallGetRequest(url, this->getAuthCookie()));
+String Powerwall::powerwallGetRequest(String url) {
+    return (this->powerwallGetRequest(url, this->getAuthCookie()));
 }
 
 /**
@@ -199,7 +198,7 @@ double Powerwall::currBattPerc(String authCookie = "") {
     }
 
     double output = socJsonDoc["percentage"];
-    output = round_down(output, 2);
+    output        = round_down(output, 2);
 
     lastSOCPerc = output;
 
@@ -229,11 +228,11 @@ double* Powerwall::currPowers(String authCookie = "") {
     const char* metersJson = this->powerwallGetRequest("/api/meters/aggregates", tempAuthCookie).c_str();
 
     // Serial.println(metersJson);
-    
+
     DynamicJsonDocument powersJsonDoc(2048);
-    
+
     DeserializationError error = deserializeJson(powersJsonDoc, metersJson);
-    
+
     if (error) {
         Serial.print(F("deserializeJson() failed: "));
         Serial.println(error.f_str());
@@ -256,10 +255,12 @@ double* Powerwall::currPowers(String authCookie = "") {
     lastPowers[2] = powers[2];
     lastPowers[3] = powers[3];
 
+    // clang-format off
     Serial.println("Netz-Leistung: "      +  String(powers[0]));
     Serial.println("Batterie-Leistung: "  +  String(powers[1]));
     Serial.println("Haus-Leistung: "      +  String(powers[2]));
     Serial.println("Solar-Leistung: "     +  String(powers[3]));
+    // clang-format on
 
     return powers;
 }
