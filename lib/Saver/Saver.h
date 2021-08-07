@@ -4,19 +4,19 @@
 #include <Arduino.h>
 #include <EEPROM.h>
 
-const int locDisID = 0; // Location of the Display-ID in the EEPROM storage
+const int locDisID = 0;  // Location of the Display-ID in the EEPROM storage
 
 class Saver {
-    private:
-        byte readByteRaw(int address);
-        void writeByteRaw(int address, byte byteval);
+   private:
+    byte readByteRaw(int address);
+    void writeByteRaw(int address, byte byteval);
 
-    public:
-        Saver();
-        void deleteEverything();
-        void saveDisplayID(int id);
-        int readDisplayID();
-        bool isAvailableDisplayID();
+   public:
+    Saver();
+    void deleteEverything();
+    void saveDisplayID(int id);
+    int readDisplayID();
+    bool isAvailableDisplayID();
 };
 
 Saver::Saver() {

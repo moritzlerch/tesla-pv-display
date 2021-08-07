@@ -43,13 +43,13 @@ int trunc_double(double value) {
  * @returns string as truncated version of the input cut to n decimals
  */
 String removeDecimalPlaces(double value, int decimal_places) {
-    String convertedString = String(value); // (1)
-    int decimalPointIndex = convertedString.indexOf("."); // (2)
+    String convertedString = String(value);                 // (1)
+    int decimalPointIndex  = convertedString.indexOf(".");  // (2)
 
-    String prePoint = convertedString.substring(0, decimalPointIndex); // (3)
-    String afterPoint = convertedString.substring(decimalPointIndex, convertedString.length()); // (4)
+    String prePoint   = convertedString.substring(0, decimalPointIndex);                         // (3)
+    String afterPoint = convertedString.substring(decimalPointIndex, convertedString.length());  // (4)
 
-    return decimal_places == 0 ? prePoint.substring(0, prePoint.length()) : prePoint + afterPoint.substring(0, decimal_places+1); // (5)
+    return decimal_places == 0 ? prePoint.substring(0, prePoint.length()) : prePoint + afterPoint.substring(0, decimal_places + 1);  // (5)
 }
 
 /** 
