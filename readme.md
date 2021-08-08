@@ -40,7 +40,7 @@ For more information on all the different screens have a look at [this wiki-page
 Project code is licensed under MIT-License, see `LICENSE` for more information.
 
 ### Logo and Icon License
-The PV-Display logos, graphics and pictures (everything in `/assets`) are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos, graphics or pictures please contact the author in order to get a permission.
+The logos, graphics and images of PV-Display (everything in `/assets`) are subject to copyright (c) Moritz Lerch, all rights reserved, and may not be used without permission. If you would like to use the logos, graphics or images, please contact the author in order to get a permission.
 
 ### Credits
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
