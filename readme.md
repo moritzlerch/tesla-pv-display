@@ -1,4 +1,4 @@
-<h2 align="center">"PV-Display" Project - Monitor power flows of your Tesla Powerwall</h2>
+<h2 align="center">"PV-Display" Project - Monitor the power flows of your Tesla Powerwall</h2>
 
 
 <p align="center">
