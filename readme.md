@@ -28,7 +28,7 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 
 For more information on all the different screens have a look at [this wiki-page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens).
 
-## 👾 Installation and Usage
+## 👾 Installation and usage
 
 - You can find a **quick start guide and documentation** in the [wiki](https://github.com/MoritzLerch/pv_display/wiki). Have fun there!
 - If you want to know, how the display shows the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
@@ -39,7 +39,7 @@ For more information on all the different screens have a look at [this wiki-page
 
 Project code is licensed under MIT-License, see `LICENSE` for more information.
 
-### Logo and Icon License
+### Logo, graphics and image license
 The logos, graphics and images of PV-Display (everything in `/assets`) are subject to copyright (c) Moritz Lerch, all rights reserved, and may not be used without permission. If you would like to use the logos, graphics or images, please contact the author in order to get a permission.
 
 ### Credits
