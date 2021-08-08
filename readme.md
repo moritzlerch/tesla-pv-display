@@ -2,7 +2,7 @@
 
 
 <p align="center">
-    <img src="/assets/logo/pv_display.svg" width=50%><br><br>
+    <img src="./assets/logo/pv_display.svg" width=60%><br><br>
     <a href="https://github.com/MoritzLerch/pv_display/releases"><img src="https://img.shields.io/github/v/release/MoritzLerch/pv_display.svg?color=blue&style=flat-square"></a>
     <a href="https://github.com/MoritzLerch/pv_display/releases"><img src="https://img.shields.io/github/workflow/status/MoritzLerch/pv_display/PlatformIO%20CI?color=blue&style=flat-square"></a>
     <a href="https://raw.githubusercontent.com/MoritzLerch/pv_display/master/LICENSE"><img src="https://img.shields.io/github/license/MoritzLerch/pv_display?color=blue&style=flat-square"></a>
@@ -11,14 +11,27 @@
 </p>
 
 ## 💡 Short description
+This project uses an ESP8266 with attached LCD-Display to connect to the local API of the Tesla Powerwall (V2). It is displaying all the current power flows (grid, home, solar, battery) and the SOC (state of charge).
 
-This project uses an ESP8266 with attached LCD-Display to connect to the local API of the Tesla Powerwall (V2). It is displaying all the current power flows (grid, home, solar, battery) and the SOC (state of charge), so it's perfect for creating an information screen.
-(If you wonder about the name: PV --> Photovoltaic; Display --> Display 😉)
+## 🎈 Showcase
+**<p align="center">A picture says more than a thousand words!</p>**
+<div align="center"><img src="./assets/photos/showcase01.jpg" width=75% ></div>
+<p align="center">(This is the main screen.)</p>
+
+
+## ⚙ Features
+- [main screen](#showcase) includes:
+    - SOC (state of charge)
+    - four different power flows (grid, home, solar, battery)
+- power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
+- indicator (dot in upper right corner) for the current API request status
+
+For more information on all the different screens have a look at [this wiki-page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens).
 
 ## 👾 Installation and Usage
 
 - You can find a **quick start guide and documentation** [here](https://github.com/MoritzLerch/pv_display/wiki). Have fun in the Wiki!
-- If you want to know, how the display show the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
+- If you want to know, how the display shows the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
 
 ## 🤝 License and credits
 
