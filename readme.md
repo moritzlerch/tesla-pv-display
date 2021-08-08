@@ -30,7 +30,7 @@ For more information on all the different screens have a look at [this wiki-page
 
 ## 👾 Installation and Usage
 
-- You can find a **quick start guide and documentation** [here](https://github.com/MoritzLerch/pv_display/wiki). Have fun in the Wiki!
+- You can find a **quick start guide and documentation** in the [wiki](https://github.com/MoritzLerch/pv_display/wiki). Have fun there!
 - If you want to know, how the display shows the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
 
 ## 🤝 License and credits
