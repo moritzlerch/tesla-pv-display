@@ -20,11 +20,11 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 
 
 ## ⚙ Features
-- [main screen](#-showcase) includes:
+- [Main screen](#-showcase) includes:
     - SOC (state of charge)
-    - four different power flows (grid, home, solar, battery)
-- power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
-- indicator (dot in upper right corner) for the current API request status
+    - Four different power flows (grid, home, solar, battery)
+- Power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
+- Indicator (dot in upper right corner) for the current API request status
 
 For more information on all the different screens have a look at [this wiki-page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens).
 
