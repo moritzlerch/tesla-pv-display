@@ -20,7 +20,7 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 
 
 ## ⚙ Features
-- [main screen](#showcase) includes:
+- [main screen](#-showcase) includes:
     - SOC (state of charge)
     - four different power flows (grid, home, solar, battery)
 - power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
