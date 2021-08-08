@@ -15,7 +15,7 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 
 ## 🎈 Showcase
 **<p align="center">A picture says more than a thousand words!</p>**
-<div align="center"><img src="./assets/photos/showcase01.jpg" width=75% ></div>
+<div align="center"><img src="./assets/pictures/showcase01.jpg" width=75% ></div>
 <p align="center">(This is the main screen.)</p>
 
 
@@ -40,7 +40,7 @@ For more information on all the different screens have a look at [this wiki-page
 Project code is licensed under MIT-License, see `LICENSE` for more information.
 
 ### Logo and Icon License
-The PV-Display logos, graphics and icons (everything in `/assets`) are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos, graphics or icons please contact the author in order to get a permission.
+The PV-Display logos, graphics and pictures (everything in `/assets`) are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos, graphics or pictures please contact the author in order to get a permission.
 
 ### Credits
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
