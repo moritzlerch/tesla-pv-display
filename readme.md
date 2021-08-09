@@ -37,7 +37,7 @@ For more information on all the different screens have a look at [this wiki-page
 
 ### License
 
-Project code is licensed under MIT-License, see `LICENSE` for more information.
+Project code is licensed under the GPL-3.0-License, see `LICENSE` for more information.
 
 ### Logo, graphics and image license
 The logos, graphics and images of PV-Display (everything in `/assets`) are subject to copyright (c) Moritz Lerch, all rights reserved, and may not be used without permission. If you would like to use the logos, graphics or images, please contact the author in order to get a permission.
@@ -46,4 +46,4 @@ The logos, graphics and images of PV-Display (everything in `/assets`) are subje
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
 
 ---
-**Disclaimer**: *In accordance with the MIT-License, I assume no liability for any damage to you or any other person or equipment. There is no warranty on this open source project.*
+**Disclaimer**: *In accordance with the GNU General Public License v3.0, I assume no liability for any damage to you or any other person or equipment. There is no warranty on this open source project.*
