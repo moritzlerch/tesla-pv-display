@@ -1,4 +1,4 @@
-<h2 align="center">"PV-Display" Project - Monitor power flows of your Tesla Powerwall</h2>
+<h2 align="center">"PV-Display" Project - Monitor the power flows of your Tesla Powerwall</h2>
 
 
 <p align="center">
@@ -20,17 +20,17 @@ This project uses an ESP8266 with attached LCD-Display to connect to the local A
 
 
 ## ⚙ Features
-- [main screen](#-showcase) includes:
+- [Main screen](#-showcase) includes:
     - SOC (state of charge)
-    - four different power flows (grid, home, solar, battery)
-- power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
-- indicator (dot in upper right corner) for the current API request status
+    - Four different power flows (grid, home, solar, battery)
+- Power flows are formatted in an organized manner. No overlapping will happen, units of values are converted to properly fit and look nice. :-)
+- Indicator (dot in upper right corner) for the current API request status
 
 For more information on all the different screens have a look at [this wiki-page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens).
 
-## 👾 Installation and Usage
+## 👾 Installation and usage
 
-- You can find a **quick start guide and documentation** [here](https://github.com/MoritzLerch/pv_display/wiki). Have fun in the Wiki!
+- You can find a **quick start guide and documentation** in the [wiki](https://github.com/MoritzLerch/pv_display/wiki). Have fun there!
 - If you want to know, how the display shows the current data from the Powerwall check out this [Wiki-Page](https://github.com/MoritzLerch/pv_display/wiki/Different-screens). Enjoy exploring!
 
 ## 🤝 License and credits
@@ -39,8 +39,8 @@ For more information on all the different screens have a look at [this wiki-page
 
 Project code is licensed under MIT-License, see `LICENSE` for more information.
 
-### Logo and Icon License
-The PV-Display logos, graphics and pictures (everything in `/assets`) are copyright (c) Moritz Lerch, all rights reserved, and may not be used without a permission. If you would like to use the logos, graphics or pictures please contact the author in order to get a permission.
+### Logo, graphics and image license
+The logos, graphics and images of PV-Display (everything in `/assets`) are subject to copyright (c) Moritz Lerch, all rights reserved, and may not be used without permission. If you would like to use the logos, graphics or images, please contact the author in order to get a permission.
 
 ### Credits
 The API requests are heavily based on the [powerwall2](https://github.com/vloschiavo/powerwall2) API documentation (Apache-2.0 License).
