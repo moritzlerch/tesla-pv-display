@@ -85,11 +85,11 @@ void Displayer::createChar(uint8_t location, uint8_t charmap[]) {
 }
 
 void Displayer::registerCustomChars() {
-    byte charClear[]           = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00000};
-    byte charDotTop[]          = {B00011, B00011, B00000, B00000, B00000, B00000, B00000, B00000};
-    byte charDotMiddle[]       = {B00000, B00000, B00000, B00011, B00011, B00000, B00000, B00000};
-    byte charDotBottom[]       = {B00000, B00000, B00000, B00000, B00000, B00000, B00011, B00011};
-    byte charConnectionIssue[] = {B00000, B00000, B00000, B00111, B01000, B10011, B10100, B10101};
+    uint8_t charClear[]           = {B00000, B00000, B00000, B00000, B00000, B00000, B00000, B00000};
+    uint8_t charDotTop[]          = {B00011, B00011, B00000, B00000, B00000, B00000, B00000, B00000};
+    uint8_t charDotMiddle[]       = {B00000, B00000, B00000, B00011, B00011, B00000, B00000, B00000};
+    uint8_t charDotBottom[]       = {B00000, B00000, B00000, B00000, B00000, B00000, B00011, B00011};
+    uint8_t charConnectionIssue[] = {B00000, B00000, B00000, B00111, B01000, B10011, B10100, B10101};
 
     this->createChar(CC_CLEAR, charClear);
     this->createChar(CC_DOT_TOP, charDotTop);

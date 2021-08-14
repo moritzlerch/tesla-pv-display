@@ -8,8 +8,8 @@ const int locDisID = 0;  // Location of the Display-ID in the EEPROM storage
 
 class Saver {
    private:
-    byte readByteRaw(int address);
-    void writeByteRaw(int address, byte byteval);
+    uint8_t readByteRaw(int address);
+    void writeByteRaw(int address, uint8_t byteval);
 
    public:
     Saver();
@@ -23,12 +23,12 @@ Saver::Saver() {
     EEPROM.begin(4096);
 }
 
-byte Saver::readByteRaw(int address) {
-    byte byteval = EEPROM.read(address);
+uint8_t Saver::readByteRaw(int address) {
+    uint8_t byteval = EEPROM.read(address);
     return byteval;
 }
 
-void Saver::writeByteRaw(int address, byte byteval) {
+void Saver::writeByteRaw(int address, uint8_t byteval) {
     EEPROM.write(address, byteval);
     EEPROM.commit();
 }
@@ -51,7 +51,7 @@ int Saver::readDisplayID() {
 }
 
 bool Saver::isAvailableDisplayID() {
-    byte value = this->readByteRaw(locDisID);
+    uint8_t value = this->readByteRaw(locDisID);
 
     if (value >= 1 && value <= 99) {
         return true;
