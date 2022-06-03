@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-#include <LiquidCrystal_I2C.h>
 #include <ESP8266WiFi.h>
 
 // custom imports
@@ -29,17 +28,12 @@ String authCookie   = "";
 // custom chars for displaying API requests
 bool showRequestState = true;
 
-LiquidCrystal_I2C lcd(0x27, 20, 4);
-
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     display.start();
     display.welcomeScreen();
     delay(4000);
-
-    // lcd.init();
-    // lcd.backlight();
 
     WiFi.softAPdisconnect(true);
 
